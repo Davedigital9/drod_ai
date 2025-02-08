@@ -18,18 +18,18 @@
     <div class="chat_container">
 
         <!-- Homepage -->
-        <header>
+        <div class="homepage">
             <div class="chat_header">
                 <div class="title">
                     <img src="./images/ai.png" alt="">
                     <h2>Droid AI</h2>
                 </div>
             </div>
-        </header>
-        <section>
             <div class="greetings">
-                <h4>Hello, I am Droid AI, a large multi-modal model, <br>How may I assist you today?</h4>
+                <p>Hello, I am Droid AI, a large multi-modal model, <br>How may I assist you today?</p>
             </div>
+        </div>
+        <section class="chat_area">
 
             <!-- Conversation Area -->
             <div class="question_container">
@@ -43,15 +43,16 @@
             <div class="loading_response">
                 <div class="loading">
                     <img src="images/ai.png" alt="AI image">
-                    <p class="loading-text">Processing...</p>
+                    <p class="loading_text">Processing...</p>
                 </div>
             </div>
 
-
-            <div class="response_container">
-                <div class="response">
-                    <img src="images/ai.png" alt="AI image">
-                    <p>I can help you with information, tasks, and more!</p>
+            <div class="response_view">
+                <div class="response_container">
+                    <div class="response">
+                        <img src="images/ai.png" alt="AI image">
+                        <p>I can help you with information, tasks, and more!</p>
+                    </div>
                 </div>
                 <div class="response_icons">
                     <span class="material-symbols-outlined">content_copy</span>
@@ -60,21 +61,21 @@
                 </div>
             </div>
         </section>
-
-        <footer>
-            <div class="text_box">
-                <div class="text_area">
-                    <input type="text" placeholder="Start a New Chat" required>                
-                    <button class="material-symbols-outlined">send</button>
-                </div>
-            </div>
-
-            <div class="disclaimer">
-                DroidAI can make mistakes. Confirm important info.
-            </div>
-        </footer>
-   
     </div>
+    <footer class="text_disclaimer">
+        <div class="text_box">
+            <div class="text_area">
+                <textarea type="text" placeholder="Start a New Chat" required></textarea>               
+                <button class="material-symbols-outlined">send</button>
+            </div>
+        </div>
+
+        <div class="disclaimer">
+            <p>DroidAI can make mistakes. Confirm important info.</p>
+        </div>
+    </footer>
+   
+    
     
 </body>
 </html>
