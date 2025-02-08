@@ -13,3 +13,19 @@ userInput.addEventListener("keypress", (e) => {
     handleUserInput();
   }
 });
+
+// Function to handle user input
+function handleUserInput() {
+  const userMessage = userInput.value.trim();
+  if (userMessage) {
+    addMessageToChat("user", userMessage);
+    userInput.value = "";
+    showLoadingResponse();
+    // Simulate AI response after a delay
+    setTimeout(() => {
+      const aiResponse = generateAIResponse(userMessage);
+      hideLoadingResponse();
+      addMessageToChat("ai", aiResponse);
+    }, 1500);
+  }
+}
