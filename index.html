@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts Icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
+    
+    <!-- Linking Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!--Linking Favicon  -->
+    <link rel="Icon" href="images/favicon.png">
+    <title>Droid AI</title>
+</head>
+<body>
+    <div class="chat_container">
+
+        <!-- Homepage -->
+        <header>
+            <div class="chat_header">
+                <div class="title">
+                    <img src="" alt="">
+                    <h2>Droid AI</h2>
+                </div>
+            </div>
+        </header>
+        <section>
+            <div class="greetings">
+                <h4>Hello, I am Droid AI, a large multi-modal model, <br>How may I assist you today?</h4>
+            </div>
+
+            <!-- Conversation Area -->
+            <div class="question_container">
+                <div class="question">
+                    <span class="material-symbols-outlined">account_circle</span>
+                    <p>What can you do?</p>
+                </div>
+            </div>
+
+            <!-- User view while response is loading before an output is generated -->
+            <div class="loading_response">
+                <div class="loading">
+                    <img src="images/ai.png" alt="AI image">
+                    <p class="loading-text">Processing...</p>
+                </div>
+            </div>
+
+
+            <div class="response_container">
+                <div class="response">
+                    <img src="images/ai.png" alt="AI image">
+                    <p>I can help you with information, tasks, and more!</p>
+                </div>
+                <div class="response_icons">
+                    <span class="material-symbols-outlined">content_copy</span>
+                    <span class="material-symbols-outlined">thumb_up</span>
+                    <span class="material-symbols-outlined">thumb_down</span>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="text_box">
+                <div class="text_area">
+                    <input type="text" placeholder="Start a New Chat" required>                
+                    <button class="material-symbols-outlined">send</button>
+                </div>
+            </div>
+
+            <div class="disclaimer">
+                DroidAI can make mistakes. Confirm important info.
+            </div>
+        </footer>
+   
+    </div>
+    
+</body>
+</html>
