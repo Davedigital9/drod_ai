@@ -32,15 +32,12 @@
         <section class="chat_area">
 
             <!-- Conversation Area -->
-            <div class="question_container">
-                <div class="question">
-                    <span class="material-symbols-outlined">account_circle</span>
-                    <p>What can you do?</p>
-                </div>
+            <div class="chat-history">
+                <!-- Initial question will be dynamically added through JS -->
             </div>
 
             <!-- User view while response is loading before an output is generated -->
-            <div class="loading_response">
+            <div class="loading_response" style="display: none;">
                 <div class="loading">
                     <img src="images/ai.png" alt="AI image">
                     <p class="loading_text">Processing...</p>
@@ -65,8 +62,8 @@
     <footer class="text_disclaimer">
         <div class="text_box">
             <div class="text_area">
-                <textarea type="text" placeholder="Start a New Chat" required></textarea>               
-                <button class="material-symbols-outlined">send</button>
+                <textarea id="user-input" type="text" placeholder="Start a New Chat" required></textarea>               
+                <button id="send-btn" class="material-symbols-outlined">send</button>
             </div>
         </div>
 
@@ -75,7 +72,8 @@
         </div>
     </footer>
    
-    
-    
+    <!-- Add script before closing body tag -->
+    <script src="script.js"></script>
 </body>
 </html>
+
