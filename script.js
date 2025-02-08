@@ -29,3 +29,27 @@ function handleUserInput() {
     }, 1500);
   }
 }
+
+// Function to add a message to the chat
+function addMessageToChat(sender, message) {
+  const messageDiv = document.createElement("div");
+  messageDiv.classList.add(
+    sender === "user" ? "question_container" : "response_container"
+  );
+
+  const innerDiv = document.createElement("div");
+  innerDiv.classList.add(sender === "user" ? "question" : "response");
+
+  if (sender === "ai") {
+    const img = document.createElement("img");
+    img.src = "images/ai.png";
+    img.alt = "AI image";
+    innerDiv.appendChild(img);
+  }
+
+  const paragraph = document.createElement("p");
+  paragraph.textContent = message;
+  innerDiv.appendChild(paragraph);
+
+  messageDiv.appendChild(innerDiv);
+  chatHistory.appendChild(messageDiv);
