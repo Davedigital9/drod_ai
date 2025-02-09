@@ -52,4 +52,5 @@ function addMessageToChat(sender, message) {
   innerDiv.appendChild(paragraph);
 
   messageDiv.appendChild(innerDiv);
-  chatHistory.appendChild(messageDiv);
+    chatHistory.appendChild(messageDiv);
+}
