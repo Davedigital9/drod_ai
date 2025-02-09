@@ -1,79 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Google Fonts Icon -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
-    
-    <!-- Linking Styles -->
-    <link rel="stylesheet" href="style.css">
-
-    <!--Linking Favicon  -->
-    <link rel="Icon" href="images/favicon.png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Droid AI</title>
-</head>
-<body>
-    <div class="chat_container">
-
-        <!-- Homepage -->
-        <div class="homepage">
-            <div class="chat_header">
-                <div class="title">
-                    <img src="./images/ai.png" alt="">
-                    <h2>Droid AI</h2>
-                </div>
-            </div>
-            <div class="greetings">
-                <p>Hello, I am Droid AI, a large multi-modal model, <br>How may I assist you today?</p>
-            </div>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <nav class="sidebar">
+        <div class="sidebar-header">
+          <img
+            src="https://via.placeholder.com/40"
+            alt="Droid AI Logo"
+            class="logo"
+          />
+          <h1>Droid AI</h1>
         </div>
-        <section class="chat_area">
-
-            <!-- Conversation Area -->
-            <div class="chat-history">
-                <!-- Initial question will be dynamically added through JS -->
-            </div>
-
-            <!-- User view while response is loading before an output is generated -->
-            <div class="loading_response" style="display: none;">
-                <div class="loading">
-                    <img src="images/ai.png" alt="AI image">
-                    <p class="loading_text">Processing...</p>
-                </div>
-            </div>
-
-            <div class="response_view">
-                <div class="response_container">
-                    <div class="response">
-                        <img src="images/ai.png" alt="AI image">
-                        <p>I can help you with information, tasks, and more!</p>
-                    </div>
-                </div>
-                <div class="response_icons">
-                    <span class="material-symbols-outlined">content_copy</span>
-                    <span class="material-symbols-outlined">thumb_up</span>
-                    <span class="material-symbols-outlined">thumb_down</span>
-                </div>
-            </div>
-        </section>
+        <button id="new-chat" class="new-chat-btn">
+          <span class="material-icons-round">add</span>
+          New Chat
+        </button>
+        <div class="chat-history">
+          <!-- Chat history will be populated by JavaScript -->
+        </div>
+        <div class="sidebar-footer">
+          <button id="toggle-theme" class="icon-btn">
+            <span class="material-icons-round">dark_mode</span>
+          </button>
+          <div class="user-info">
+            <img
+              src="https://via.placeholder.com/32"
+              alt="User Avatar"
+              class="user-avatar"
+            />
+            <span class="user-name">John Doe</span>
+          </div>
+          <button id="sign-out" class="icon-btn">
+            <span class="material-icons-round">logout</span>
+          </button>
+        </div>
+      </nav>
+      <main class="chat-area">
+        <header class="chat-header">
+          <h2 id="current-chat-title">New Chat</h2>
+          <button id="clear-chat" class="icon-btn">
+            <span class="material-icons-round">delete_outline</span>
+          </button>
+        </header>
+        <div class="messages-container">
+          <!-- Messages will be populated by JavaScript -->
+        </div>
+        <footer class="chat-footer">
+          <form id="chat-form" class="chat-input-form">
+            <input
+              type="text"
+              id="user-input"
+              placeholder="Type your message here..."
+              required
+            />
+            <button type="submit" class="send-btn">
+              <span class="material-icons-round">send</span>
+            </button>
+          </form>
+        </footer>
+      </main>
     </div>
-    <footer class="text_disclaimer">
-        <div class="text_box">
-            <div class="text_area">
-                <textarea id="user-input" type="text" placeholder="Start a New Chat" required></textarea>               
-                <button id="send-btn" class="material-symbols-outlined">send</button>
-            </div>
-        </div>
-
-        <div class="disclaimer">
-            <p>DroidAI can make mistakes. Confirm important info.</p>
-        </div>
-    </footer>
-   
-    <!-- Add script before closing body tag -->
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
-

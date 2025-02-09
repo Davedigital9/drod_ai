@@ -1,78 +1,79 @@
 // DOM Elements
-const chatHistory = document.querySelector(".chat-history");
-const userInput = document.getElementById("user-input");
-const sendButton = document.getElementById("send-btn");
-const loadingResponse = document.querySelector(".loading_response");
-const responseView = document.querySelector(".response_view");
+const chatHistory = document.querySelector(".chat-history")
+const messagesContainer = document.querySelector(".messages-container")
+const userInput = document.getElementById("user-input")
+const chatForm = document.getElementById("chat-form")
+const newChatBtn = document.getElementById("new-chat")
+const clearChatBtn = document.getElementById("clear-chat")
+const toggleThemeBtn = document.getElementById("toggle-theme")
+const signOutBtn = document.getElementById("sign-out")
+const currentChatTitle = document.getElementById("current-chat-title")
+
+// Chat history
+const chats = []
+let currentChatId = null
 
 // Event Listeners
-sendButton.addEventListener("click", handleUserInput);
-userInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter" && !e.shiftKey) {
-    e.preventDefault();
-    handleUserInput();
-  }
-});
+chatForm.addEventListener("submit", handleUserInput)
+newChatBtn.addEventListener("click", startNewChat)
+clearChatBtn.addEventListener("click", clearCurrentChat)
+toggleThemeBtn.addEventListener("click", toggleTheme)
+signOutBtn.addEventListener("click", signOut)
 
-// Function to handle user input
-function handleUserInput() {
-  const userMessage = userInput.value.trim();
+// Functions
+function handleUserInput(e) {
+  e.preventDefault()
+  const userMessage = userInput.value.trim()
   if (userMessage) {
-    addMessageToChat("user", userMessage);
-    userInput.value = "";
-    showLoadingResponse();
-    // Simulate AI response after a delay
+    addMessageToChat("user", userMessage)
+    userInput.value = ""
+    userInput.style.height = "auto"
+    // Simulate AI response
+    showTypingIndicator()
     setTimeout(() => {
-      const aiResponse = generateAIResponse(userMessage);
-      hideLoadingResponse();
-      addMessageToChat("ai", aiResponse);
-    }, 1500);
+      removeTypingIndicator()
+      const aiResponse = generateAIResponse(userMessage)
+      addMessageToChat("ai", aiResponse)
+    }, 1500)
   }
 }
 
-// Function to add a message to the chat
 function addMessageToChat(sender, message) {
-  const messageDiv = document.createElement("div");
-  messageDiv.classList.add(
-    sender === "user" ? "question_container" : "response_container"
-  );
+  const messageElement = document.createElement("div")
+  messageElement.classList.add("message", sender)
+  messageElement.textContent = message
+  messagesContainer.appendChild(messageElement)
+  messagesContainer.scrollTop = messagesContainer.scrollHeight
 
-  const innerDiv = document.createElement("div");
-  innerDiv.classList.add(sender === "user" ? "question" : "response");
-
-  if (sender === "ai") {
-    const img = document.createElement("img");
-    img.src = "images/ai.png";
-    img.alt = "AI image";
-    innerDiv.appendChild(img);
+  // Update current chat in history
+  if (currentChatId !== null) {
+    const chatIndex = chats.findIndex((chat) => chat.id === currentChatId)
+    if (chatIndex !== -1) {
+      chats[chatIndex].messages.push({ sender, message })
+      updateChatHistory()
+    }
   }
-
-  const paragraph = document.createElement("p");
-  paragraph.textContent = message;
-  innerDiv.appendChild(paragraph);
-
-  messageDiv.appendChild(innerDiv);
-  chatHistory.appendChild(messageDiv);
-
-  // Scroll to the bottom of the chat
-  chatHistory.scrollTop = chatHistory.scrollHeight;
 }
 
-// Function to show loading response
-function showLoadingResponse() {
-  loadingResponse.style.display = "flex"
+function showTypingIndicator() {
+  const typingIndicator = document.createElement("div")
+  typingIndicator.classList.add("message", "ai", "typing-indicator")
+  typingIndicator.innerHTML = "<span></span><span></span><span></span>"
+  messagesContainer.appendChild(typingIndicator)
+  messagesContainer.scrollTop = messagesContainer.scrollHeight
 }
 
-// Function to hide loading response
-function hideLoadingResponse() {
-  loadingResponse.style.display = "none"
+function removeTypingIndicator() {
+  const typingIndicator = messagesContainer.querySelector(".typing-indicator")
+  if (typingIndicator) {
+    typingIndicator.remove()
+  }
 }
 
-// Function to generate AI response (placeholder)
 function generateAIResponse(userMessage) {
   // This is a placeholder. In a real application, you would call an API here.
   const responses = [
-    "That's an interesting question. Let me think about it.",
+    "That's an interesting point. Let me elaborate...",
     "I understand your query. Here's what I think...",
     "Based on my knowledge, I would say...",
     "That's a complex topic. Let me break it down for you.",
@@ -81,8 +82,72 @@ function generateAIResponse(userMessage) {
   return responses[Math.floor(Math.random() * responses.length)]
 }
 
-// Initialize the chat with a greeting
-window.addEventListener("load", () => {
-  addMessageToChat("ai", "Hello! I'm Droid AI. How can I assist you today?")
+function startNewChat() {
+  currentChatId = Date.now()
+  const newChatTitle = `Chat ${chats.length + 1}`
+  chats.unshift({ id: currentChatId, title: newChatTitle, messages: [] })
+  updateChatHistory()
+  clearMessages()
+  currentChatTitle.textContent = newChatTitle
+}
+
+function clearCurrentChat() {
+  clearMessages()
+  if (currentChatId !== null) {
+    const chatIndex = chats.findIndex((chat) => chat.id === currentChatId)
+    if (chatIndex !== -1) {
+      chats[chatIndex].messages = []
+      updateChatHistory()
+    }
+  }
+}
+
+function clearMessages() {
+  messagesContainer.innerHTML = ""
+}
+
+function updateChatHistory() {
+  chatHistory.innerHTML = ""
+  chats.forEach((chat) => {
+    const chatElement = document.createElement("div")
+    chatElement.classList.add("chat-history-item")
+    if (chat.id === currentChatId) {
+      chatElement.classList.add("active")
+    }
+    chatElement.textContent = chat.title
+    chatElement.addEventListener("click", () => loadChat(chat.id))
+    chatHistory.appendChild(chatElement)
+  })
+}
+
+function loadChat(chatId) {
+  currentChatId = chatId
+  const chat = chats.find((c) => c.id === chatId)
+  if (chat) {
+    clearMessages()
+    chat.messages.forEach((msg) => addMessageToChat(msg.sender, msg.message))
+    currentChatTitle.textContent = chat.title
+    updateChatHistory()
+  }
+}
+
+function toggleTheme() {
+  document.body.classList.toggle("dark-mode")
+  const isDarkMode = document.body.classList.contains("dark-mode")
+  toggleThemeBtn.innerHTML = `<span class="material-icons-round">${isDarkMode ? "light_mode" : "dark_mode"}</span>`
+}
+
+function signOut() {
+  // Implement sign out functionality here
+  alert("Sign out functionality to be implemented")
+}
+
+// Initialize the app
+startNewChat()
+
+// Adjust textarea height based on content
+userInput.addEventListener("input", function () {
+  this.style.height = "auto"
+  this.style.height = this.scrollHeight + "px"
 })
 
