@@ -1,32 +1,31 @@
 html {
-    color-scheme: light dark;
+  color-scheme: light dark;
 }
 
 /* Importing google fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
-*{
-    /* margin: 0;
+* {
+  /* margin: 0;
     padding: 0; */
-    box-sizing: border-box;
-    font-family: "Poppins", serif;
+  box-sizing: border-box;
+  font-family: "Poppins", serif;
 }
 
-
 body {
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .homepage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: none;
 }
 .chat_area {
-    /* display: none; */
+  /* display: none; */
 }
 
 /* section {
@@ -41,10 +40,10 @@ justify-content: center;
 } */
 
 .chat_container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 2rem 2rem;
 }
 
 /*.chat_container :where(.chat_header, .question_container, .greetings, .loading_response, .response_container, .disclaimer,){
@@ -52,208 +51,204 @@ justify-content: center;
 }*/
 
 .chat_header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
-.title{
-
+.title {
 }
 
-.greetings{
-    font-size: 1.5rem;
-
+.greetings {
+  font-size: 1.5rem;
 }
 .question_container {
-    display: flex;
-    flex-direction: row;
-    border: 2px solid gray;
-    justify-content: flex-start;
-    align-items: center;
-    border-radius: 10px;
-    margin-bottom: 2rem;
-    width: 100%;
-    max-width: 100%;
-    gap: 1rem;
-    word-wrap: break-word;
+  display: flex;
+  flex-direction: row;
+  border: 2px solid gray;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 100%;
+  gap: 1rem;
+  word-wrap: break-word;
 }
 
 .question {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    border-radius: 0.5rem;
-    word-wrap: break-word;
-    flex-grow: 1;
-    max-width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  word-wrap: break-word;
+  flex-grow: 1;
+  max-width: 100%;
 }
 .response_view {
-    display: none;
+  display: none;
 }
-.response_container{
-    display: flex;
-    flex-direction: row;
-    border: none;
-    justify-content: flex-start;
-    align-items: center;
-    margin-bottom: 0.5rem;
-    margin-top: 2rem;
-    width: 100%;
-    max-width: 100%;
-    gap: 1rem;
-    word-wrap: break-word;
+.response_container {
+  display: flex;
+  flex-direction: row;
+  border: none;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 100%;
+  gap: 1rem;
+  word-wrap: break-word;
 }
 
 .response {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    border-radius: 0.5rem;
-    word-wrap: break-word;
-    flex-grow: 1;
-    max-width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  word-wrap: break-word;
+  flex-grow: 1;
+  max-width: 100%;
 }
 
 .response img {
-    width: 10%;
-    height: 10%;
+  width: 10%;
+  height: 10%;
 }
 .text_box {
-   width: 100%;
-   display: flex;
-   justify-content: center;
-   padding: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
 }
 
-.text_area{
-    display: flex;
-    align-items: center;
-    border-radius: 10px;
-    justify-content: space-between;
-    background: rgb(48,48,48);
-    border: 1px solid #ccc;
-    padding: 0.5rem;
-    object-fit: cover;
-    width: 100%;
-    position: relative;
+.text_area {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  justify-content: space-between;
+  background: rgb(48, 48, 48);
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  object-fit: cover;
+  width: 100%;
+  position: relative;
 }
 
 .text_area textarea {
-    flex: 1;
-    border: none;
-    font-size: 1rem;
-    outline: none;
-    padding: 0.5rem;
-    resize: none;
-    min-height: 2rem;
-    background: transparent;
-    border-radius: 10px;
+  flex: 1;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  padding: 0.5rem;
+  resize: none;
+  min-height: 2rem;
+  background: transparent;
+  border-radius: 10px;
 }
 .text_disclaimer {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
-
 .loading_response {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    border: none;
-    margin-top: 1rem;
-    background-color: rgba(0, 0, 0, 0.1);
-    width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border: none;
+  margin-top: 1rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 100%;
 }
 
 /* Loading Container */
 .loading {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 0.5s ease-out;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-out;
 }
 
 .loading img {
-    width: 70%;
-    height: 70%;
-    animation: rotateImage 2s linear infinite;
+  width: 70%;
+  height: 70%;
+  animation: rotateImage 2s linear infinite;
 }
 
 .loading_text {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #333;
-    animation: textAnimation 1.5s ease-in-out infinite;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  animation: textAnimation 1.5s ease-in-out infinite;
 }
 
-.disclaimer{
-    margin-top: 4rem;
-    margin-bottom: 2rem;
-    font-size: 0.70rem;
-    color: lightgray;
+.disclaimer {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  font-size: 0.7rem;
+  color: lightgray;
 }
 
 button {
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    color: white;
-    background-color: #007bff;
-    transition: opacity 0.3s ease-in-out;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: white;
+  background-color: #007bff;
+  transition: opacity 0.3s ease-in-out;
 }
 button:hover {
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
 footer {
-    width: 100vw;
-    position: fixed;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    left: 0;
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  left: 0;
 }
 
-
 @keyframes rotateImage {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Text animation*/
 @keyframes textAnimation {
-    0% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 /* Fade-in effect for the loading container */
 @keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
