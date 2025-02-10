@@ -23,7 +23,7 @@ app.use(cors({
     origin: '*' // Allow requests from any origin
   }));
 
-const genAI = new GoogleGenerativeAI("AIzaSyDbWt7XfEMy3prfuqpYCjCaGgBWAzo-bw0");
+  const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 app.post('/generate-ai-response', async (req, res) => {

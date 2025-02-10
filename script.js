@@ -78,7 +78,7 @@ function removeTypingIndicator() {
 
 async function generateAIResponse(userMessage) {
   try {
-    const response = await axios.post('https://drod-ai.vercel.app/', {
+    const response = await axios.post('https://drod-ai.vercel.app/generate-ai-response', {
       prompt: userMessage
     });
     return response.data.response;
