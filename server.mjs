@@ -20,10 +20,10 @@ const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(cors({
-    origin: '*' // Allow requests from any origin
-  }));
+    origin: 'https://drod-1hva7d17f-davedigitals-projects.vercel.app/'
+}));
 
-  const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 app.post('/generate-ai-response', async (req, res) => {
