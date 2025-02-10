@@ -87,19 +87,6 @@ async function generateAIResponse(userMessage) {
   }
 }
 
-/*
-async function generateAIResponse(userMessage) {
-  try {
-    const response = await axios.post('http://localhost:3000/generate-ai-response', {
-      prompt: userMessage
-    });
-    return response.data.response;
-  } catch (error) {
-    console.error("Error calling Gemini API:", error);
-    throw error;
-  }
-}
-*/
 function startNewChat() {
   currentChatId = Date.now()
   const newChatTitle = `Chat ${chats.length + 1}`
