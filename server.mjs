@@ -16,11 +16,11 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 
 const app = express();
-const port = 3000;
+const port = process.env.port || 3000;
 
 app.use(bodyParser.json());
 app.use(cors({
-    origin: 'http://127.0.0.1:5500' // Allow requests from the local   web server
+    origin: '*' // Allow requests from any origin
   }));
 
 const genAI = new GoogleGenerativeAI("AIzaSyDbWt7XfEMy3prfuqpYCjCaGgBWAzo-bw0");

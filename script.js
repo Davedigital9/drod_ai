@@ -75,6 +75,20 @@ function removeTypingIndicator() {
     typingIndicator.remove()
   }
 }
+
+async function generateAIResponse(userMessage) {
+  try {
+    const response = await axios.post('https://drod-ai.vercel.app/generate-ai-response', {
+      prompt: userMessage
+    });
+    return response.data.response;
+  } catch (error) {
+    console.error("Error calling Gemini API:", error);
+    throw error;
+  }
+}
+
+/*
 async function generateAIResponse(userMessage) {
   try {
     const response = await axios.post('http://localhost:3000/generate-ai-response', {
@@ -84,22 +98,6 @@ async function generateAIResponse(userMessage) {
   } catch (error) {
     console.error("Error calling Gemini API:", error);
     throw error;
-  }
-}
-/*
-async function generateAIResponse(userMessage) {
-  const apiKey = 'AIzaSyDbWt7XfEMy3prfuqpYCjCaGgBWAzo-bw0'
-  const apiUrl = 'https://api.gemini.com/v1/ai-response' 
-
-  try {
-    const response = await axios.post(apiUrl, {
-      prompt: userMessage,
-      apiKey: apiKey
-    })
-    return response.data.response
-  } catch (error) {
-    console.error("Error calling Gemini API:", error)
-    throw error
   }
 }
 */
