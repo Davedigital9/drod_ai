@@ -63,34 +63,38 @@ export default async function handler(req, res) {
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export default async function handler(req, res) {
+    // Handle CORS preflight request
+    if (req.method === 'OPTIONS') {
+        res.setHeader('Access-Control-Allow-Origin', '*'); // Allow all origins
+        res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+        return res.status(200).end();
+    }
+
     if (req.method !== 'POST') {
         return res.status(405).json({ error: "Method not allowed" });
     }
 
-    // Ensure the API key is stored securely in Vercel's environment variables
+    // Securely access the API key from environment variables
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
         return res.status(500).json({ error: "Missing API key" });
     }
 
-    const { prompt } = req.body;
-
     try {
+        const { prompt } = req.body;
         const genAI = new GoogleGenerativeAI(apiKey);
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
         const result = await model.generateContent(prompt);
-        
-        res.setHeader('Access-Control-Allow-Origin', '*'); // ✅ Fix CORS
+
+        // Ensure CORS headers are set on API response
+        res.setHeader('Access-Control-Allow-Origin', '*'); // Allow all origins
         res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-        if (req.method === 'OPTIONS') {
-            return res.status(200).end(); // ✅ Handle CORS preflight request
-        }
-
-        res.status(200).json({ response: result.response.text() });
+        return res.status(200).json({ response: result.response.text() });
     } catch (error) {
         console.error("Error generating AI response:", error);
-        res.status(500).json({ error: "Failed to generate AI response" });
+        return res.status(500).json({ error: "Failed to generate AI response" });
     }
 }
