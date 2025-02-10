@@ -78,9 +78,8 @@ function removeTypingIndicator() {
 
 async function generateAIResponse(userMessage) {
   try {
-    const response = await axios.post('https://drod-ai.vercel.app/generate-ai-response', {
-      prompt: userMessage
-    });
+    const response = await axios.post('/api/generate-ai-response', { prompt: userMessage });
+  
     return response.data.response;
   } catch (error) {
     console.error("Error calling Gemini API:", error);
