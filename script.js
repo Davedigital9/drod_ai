@@ -28,22 +28,28 @@ function handleUserInput(e) {
     addMessageToChat("user", userMessage)
     userInput.value = ""
     userInput.style.height = "auto"
+
     // Simulate AI response
     showTypingIndicator()
-    setTimeout(() => {
-      removeTypingIndicator()
-      const aiResponse = generateAIResponse(userMessage)
-      addMessageToChat("ai", aiResponse)
-    }, 1500)
+    generateAIResponse(userMessage)
+      .then(aiResponse => {
+        removeTypingIndicator()
+        addMessageToChat("ai", aiResponse)
+      })
+      .catch(error => {
+        removeTypingIndicator();
+        addMessageToChat("ai", "Sorry, I couldn't process your request.");
+        console.error("Error generating AI response:", error);
+      });
   }
 }
 
 function addMessageToChat(sender, message) {
-  const messageElement = document.createElement("div")
-  messageElement.classList.add("message", sender)
-  messageElement.textContent = message
-  messagesContainer.appendChild(messageElement)
-  messagesContainer.scrollTop = messagesContainer.scrollHeight
+  const messageElement = document.createElement("div");
+  messageElement.classList.add("message", sender);
+  messageElement.textContent = message;
+  messagesContainer.appendChild(messageElement);
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
   // Update current chat in history
   if (currentChatId !== null) {
@@ -69,19 +75,34 @@ function removeTypingIndicator() {
     typingIndicator.remove()
   }
 }
-
-function generateAIResponse(userMessage) {
-  // This is a placeholder. In a real application, you would call an API here.
-  const responses = [
-    "That's an interesting point. Let me elaborate...",
-    "I understand your query. Here's what I think...",
-    "Based on my knowledge, I would say...",
-    "That's a complex topic. Let me break it down for you.",
-    "I'm not entirely sure, but here's my best attempt at an answer.",
-  ]
-  return responses[Math.floor(Math.random() * responses.length)]
+async function generateAIResponse(userMessage) {
+  try {
+    const response = await axios.post('http://localhost:3000/generate-ai-response', {
+      prompt: userMessage
+    });
+    return response.data.response;
+  } catch (error) {
+    console.error("Error calling Gemini API:", error);
+    throw error;
+  }
 }
+/*
+async function generateAIResponse(userMessage) {
+  const apiKey = 'AIzaSyDbWt7XfEMy3prfuqpYCjCaGgBWAzo-bw0'
+  const apiUrl = 'https://api.gemini.com/v1/ai-response' 
 
+  try {
+    const response = await axios.post(apiUrl, {
+      prompt: userMessage,
+      apiKey: apiKey
+    })
+    return response.data.response
+  } catch (error) {
+    console.error("Error calling Gemini API:", error)
+    throw error
+  }
+}
+*/
 function startNewChat() {
   currentChatId = Date.now()
   const newChatTitle = `Chat ${chats.length + 1}`
@@ -150,4 +171,3 @@ userInput.addEventListener("input", function () {
   this.style.height = "auto"
   this.style.height = this.scrollHeight + "px"
 })
-
